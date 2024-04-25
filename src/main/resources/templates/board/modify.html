@@ -55,6 +55,23 @@
 
 <script layout:fragment="script" th:inline="javascript">
 
+    document.querySelector(".removeBtn").addEventListener("click",function (e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        formObj.action = `/board/remove`
+        formObj.method = 'post'
+        formObj.submit()
+    },false)
+
+    document.querySelector(".listBtn").addEventListener("click",function (e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        formObj.reset()
+        self.location = `/board/list?${link}`
+    },false)
+
     const errors = [[${errors}]]
     console.log(errors)
 
