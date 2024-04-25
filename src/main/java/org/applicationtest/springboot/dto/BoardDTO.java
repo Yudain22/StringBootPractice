@@ -1,4 +1,4 @@
-package org.zerock.springboot.dto;
+package org.applicationtest.springboot.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

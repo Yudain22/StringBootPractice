@@ -1,13 +1,13 @@
-package org.zerock.springboot.repository.search;
+package org.applicationtest.springboot.repository.search;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
+import org.applicationtest.springboot.domain.QBoard;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-import org.zerock.springboot.domain.Board;
-import org.zerock.springboot.domain.QBoard;
+import org.applicationtest.springboot.domain.Board;
 
 import java.util.List;
 

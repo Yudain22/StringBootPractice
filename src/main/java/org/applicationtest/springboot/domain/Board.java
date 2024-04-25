@@ -1,4 +1,4 @@
-package org.zerock.springboot.domain;
+package org.applicationtest.springboot.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

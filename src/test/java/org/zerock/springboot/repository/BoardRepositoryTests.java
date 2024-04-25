@@ -1,6 +1,7 @@
 package org.zerock.springboot.repository;
 
 import lombok.extern.log4j.Log4j2;
+import org.applicationtest.springboot.repository.BoardRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.zerock.springboot.domain.Board;
+import org.applicationtest.springboot.domain.Board;
 
 import java.util.List;
 import java.util.Optional;

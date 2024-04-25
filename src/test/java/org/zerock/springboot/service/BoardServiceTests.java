@@ -1,11 +1,13 @@
 package org.zerock.springboot.service;
 
 import lombok.extern.log4j.Log4j2;
+import org.applicationtest.springboot.service.BoardService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.zerock.springboot.domain.Board;
-import org.zerock.springboot.dto.BoardDTO;
+import org.applicationtest.springboot.dto.BoardDTO;
+import org.applicationtest.springboot.dto.PageRequestDTO;
+import org.applicationtest.springboot.dto.PageResponseDTO;
 
 @SpringBootTest
 @Log4j2
@@ -44,6 +46,21 @@ public class BoardServiceTests {
     @Test
     public void testRemove(){
         boardService.remove(101L);
+    }
+
+    @Test
+    public void testList(){
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .type("tcw")
+                .keyword("1")
+                .page(1)
+                .size(10)
+                .build();
+
+        PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
+
+        log.info(responseDTO);
     }
 }
 
