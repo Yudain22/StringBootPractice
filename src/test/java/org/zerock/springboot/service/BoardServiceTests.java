@@ -40,5 +40,10 @@ public class BoardServiceTests {
 
         boardService.modify(boardDTO);
     }
+
+    @Test
+    public void testRemove(){
+        boardService.remove(101L);
+    }
 }
 
