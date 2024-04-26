@@ -31,6 +31,7 @@ layout:decorate="~{layout/layout1.html}">
                         <legend>검색</legend>
                         <input type="text" class="tbox" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
                         <a href="javascript:;" class="btn_srch">검색</a>
+                        <a th:href="@{/ex/notice_add}" class="btn_srch">등록</a>
                     </fieldset>
                 </form>
                 <table class="bbsListTbl" summary="번호,제목,조회수,작성일 등을 제공하는 표">
@@ -46,7 +47,9 @@ layout:decorate="~{layout/layout1.html}">
                     <tbody>
                     <tr th:each="notice:${noticeList}">
                         <td th:text="${notice.no}"></td>
-                        <td class="tit_notice"><a th:href="@{/ex/notice_view(no=${notice.no})}">[[${notice.title}]]</a> </td>
+                        <td class="tit_notice">
+                            <a th:href="@{/ex/notice_view(no =${notice.no})}">
+                                [[${notice.title}]]</a> </td>
                         <td>[[${notice.count}]]</td>
                         <td>[[${#temporals.format(notice.regDate,'yyyy-MM-dd')}]]</td>
                     </tr>
