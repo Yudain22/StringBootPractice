@@ -15,6 +15,6 @@ public interface NoticeService {
 
     void remove(Long no);
 
-    List<NoticeDTO> list(PageRequestDTO pageRequestDTO);
+    PageResponseDTO<NoticeDTO> list(PageRequestDTO pageRequestDTO);
 
 }

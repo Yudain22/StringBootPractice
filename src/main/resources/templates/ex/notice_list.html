@@ -56,16 +56,34 @@ layout:decorate="~{layout/layout1.html}">
                     </tbody>
                 </table>
                 <!-- pagination -->
-                <div class="pagination">
-                    <a href="javascript:;" class="firstpage  pbtn"><img src="/img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
-                    <a href="javascript:;" class="prevpage  pbtn"><img src="/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
-                    <a href="javascript:;"><span class="pagenum currentpage">1</span></a>
-                    <a href="javascript:;"><span class="pagenum">2</span></a>
-                    <a href="javascript:;"><span class="pagenum">3</span></a>
-                    <a href="javascript:;"><span class="pagenum">4</span></a>
-                    <a href="javascript:;"><span class="pagenum">5</span></a>
-                    <a href="javascript:;" class="nextpage  pbtn"><img src="/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
-                    <a href="javascript:;" class="lastpage  pbtn"><img src="/img/btn_lastpage.png" alt="마지막 페이지로 이동"></a>
+<!--                <div class="pagination">-->
+<!--                    <a href="javascript:;" class="firstpage  pbtn"><img src="/img/btn_firstpage.png" alt="첫 페이지로 이동"></a>-->
+<!--                    <a href="javascript:;" class="prevpage  pbtn"><img src="/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>-->
+<!--                    <a href="javascript:;"><span class="pagenum currentpage">1</span></a>-->
+<!--                    <a href="javascript:;"><span class="pagenum">2</span></a>-->
+<!--                    <a href="javascript:;"><span class="pagenum">3</span></a>-->
+<!--                    <a href="javascript:;"><span class="pagenum">4</span></a>-->
+<!--                    <a href="javascript:;"><span class="pagenum">5</span></a>-->
+<!--                    <a href="javascript:;" class="nextpage  pbtn"><img src="/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>-->
+<!--                    <a href="javascript:;" class="lastpage  pbtn"><img src="/img/btn_lastpage.png" alt="마지막 페이지로 이동"></a>-->
+<!--                </div>-->
+                <div class="float-end">
+                    <ul class="pagination flex-wrap">
+
+                        <li class="page-item" th:if="${responseDTO.prev}">
+                            <a class="page-link" th:data-num="${responseDTO.start -1}">Previous</a>
+                        </li>
+
+                        <th:block th:each="i: ${#numbers.sequence(responseDTO.start, responseDTO.end)}">
+                            <li th:class="${responseDTO.page == i}?'page-item active':'page-item'">
+                                <a class="page-link" th:data-num="${i}">[[${i}]]</a>
+                            </li>
+                        </th:block>
+
+                        <li class="page-item" th:if="${responseDTO.next}">
+                            <a class="page-link" th:data-num="${responseDTO.end + 1}">Next</a>
+                        </li>
+                    </ul>
                 </div>
                 <!-- //pagination -->
 
@@ -79,6 +97,22 @@ layout:decorate="~{layout/layout1.html}">
 
 <script layout:fragment="script" th:inline="javascript">
     const arr = [[${arr}]]
+
+    document.querySelector(".pagination").addEventListener("click",function (e){
+        e.preventDefault()
+        e.stopPropagation()
+        const  target = e.target
+
+        if (target.tagName !=='A'){
+            return
+        }
+        const num = target.getAttribute("data-num")
+
+        const formObj = document.querySelector("form")
+
+        formObj.innerHTML += `<input type="hidden" name="page" value="${num}">`
+        formObj.submit();
+    },false)
 </script>
 
 </html>

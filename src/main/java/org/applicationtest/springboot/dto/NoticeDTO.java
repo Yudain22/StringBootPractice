@@ -1,6 +1,7 @@
 package org.applicationtest.springboot.dto;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,9 @@ import java.time.LocalDateTime;
 public class NoticeDTO {
 
     private Long no;
+    @NotEmpty
     private String title;
+    @NotEmpty
     private String content;
     private Long count;
     private LocalDateTime regDate;

@@ -3,8 +3,10 @@ package org.applicationtest.springboot.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.applicationtest.springboot.domain.Board;
+
 import org.applicationtest.springboot.domain.Notice;
+
+
 import org.applicationtest.springboot.dto.BoardDTO;
 import org.applicationtest.springboot.dto.NoticeDTO;
 import org.applicationtest.springboot.dto.PageRequestDTO;
@@ -60,13 +62,23 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public List<NoticeDTO> list(PageRequestDTO pageRequestDTO) {
-        List<NoticeDTO> result =
-                noticeRepository.findAll().stream()
-                        //stream 반복문 실행 의미 아래 맵 내용을 반복
-                        .map(notice -> modelMapper.map(notice,NoticeDTO.class))
-                        .collect(Collectors.toList());
-        return result;
+    public PageResponseDTO<NoticeDTO> list(PageRequestDTO pageRequestDTO) {
+        //페이지 및 검색 조건 취득
+        String[] types = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
+        Pageable pageable = pageRequestDTO.getPageable("no");
+        //레포지토리를 실행하여 데이터 취득
+        Page<Notice> result = noticeRepository.search1(pageable);
+        //VO를 DTO로 변환
+        List<NoticeDTO> dtoList = result.getContent().stream()
+                .map(notice -> modelMapper.map(notice,NoticeDTO.class))
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<NoticeDTO>withAll()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(dtoList)
+                .total((int)result.getTotalElements())
+                .build();
     }
 
 
