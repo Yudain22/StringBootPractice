@@ -1,6 +1,9 @@
 package org.applicationtest.springboot.controller;
 
 import lombok.extern.log4j.Log4j2;
+import org.applicationtest.springboot.dto.PageRequestDTO;
+import org.applicationtest.springboot.service.NoticeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,8 @@ import java.util.stream.IntStream;
 @Controller
 @Log4j2
 public class SampleController {
+    @Autowired
+    private NoticeService noticeService;
 
     @GetMapping("/hello")
     public void hello(Model model) {
@@ -70,27 +75,27 @@ public class SampleController {
         model.addAttribute("arr", new String[]{"AAA", "BBB", "CCC"});
     }
 
-    @GetMapping("/example/notice_list")
-    public void notice_list(Model model) {
-        model.addAttribute("arr", new String[]{"AAA", "BBB", "CCC"});
+    @GetMapping("/ex/notice_list")
+    public void notice_list(PageRequestDTO pageRequestDTO, Model model) {
+        model.addAttribute("noticeList",noticeService.list(pageRequestDTO));
     }
 
-    @GetMapping("/example/notice_add")
+    @GetMapping("/ex/notice_add")
     public void notice_add(Model model) {
         model.addAttribute("arr", new String[]{"AAA", "BBB", "CCC"});
     }
 
-    @GetMapping("/example/notice_view")
+    @GetMapping("/ex/notice_view")
     public void notice_view(Model model) {
         model.addAttribute("arr", new String[]{"AAA", "BBB", "CCC"});
     }
 
-    @GetMapping("/example/login")
+    @GetMapping("/ex/login")
     public void login(Model model) {
 
     }
 
-    @GetMapping("/example/join")
+    @GetMapping("/ex/join")
     public void join(Model model) {
 
     }

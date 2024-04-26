@@ -2,11 +2,19 @@ package org.applicationtest.springboot.service;
 
 import org.applicationtest.springboot.dto.NoticeDTO;
 import org.applicationtest.springboot.dto.PageRequestDTO;
-import org.springframework.data.domain.PageRequest;
+import org.applicationtest.springboot.dto.PageResponseDTO;
 
 import java.util.List;
 
 public interface NoticeService {
-    List<NoticeDTO> getNoticeList(PageRequestDTO pageRequestDTO);
+    Long register(NoticeDTO noticeDTO);
+
+    NoticeDTO readOne(Long no);
+
+    void modify(NoticeDTO noticeDTO);
+
+    void remove(Long no);
+
+    List<NoticeDTO> list(PageRequestDTO pageRequestDTO);
 
 }
