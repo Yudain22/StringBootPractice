@@ -1,6 +1,7 @@
 package org.applicationtest.springboot.controller;
 
 import lombok.extern.log4j.Log4j2;
+import org.applicationtest.springboot.dto.NoticeDTO;
 import org.applicationtest.springboot.dto.PageRequestDTO;
 import org.applicationtest.springboot.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,8 +87,8 @@ public class SampleController {
     }
 
     @GetMapping("/ex/notice_view")
-    public void notice_view(Model model) {
-        model.addAttribute("arr", new String[]{"AAA", "BBB", "CCC"});
+    public void notice_view(Long no,Model model) {
+        model.addAttribute("notice", noticeService.readOne(no));
     }
 
     @GetMapping("/ex/login")
