@@ -20,7 +20,7 @@
     <!-- bodytext_area -->
     <div class="bodytext_area box_inner">
         <!-- appForm -->
-        <form action="#" class="appForm">
+        <form action="/ex/join" class="appForm" method="get">
             <fieldset>
                 <legend>상담문의 입력 양식</legend>
                 <p class="info_pilsoo pilsoo_item">필수입력</p>
@@ -28,9 +28,9 @@
                     <li class="clear">
                         <label for="email_lbl" class="tit_lbl pilsoo_item">이메일</label>
                         <div class="app_content email_area">
-                            <input type="text" class="w160" id="email_lbl" title="이메일 주소" />
+                            <input type="text" class="w160" name="member_id" id="email_lbl" title="이메일 주소" />
                             <span class="ico_space">@</span>
-                            <input type="text" class="w160" title="이메일 제공업체 입력" />
+                            <input type="text" class="w160" name="email2" title="이메일 제공업체 입력" />
                             <div class="select_common">
                                 <select title="이메일 제공업체 목록">
                                     <option value="">직접입력</option>

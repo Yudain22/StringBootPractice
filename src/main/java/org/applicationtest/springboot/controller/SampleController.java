@@ -154,6 +154,7 @@ public class SampleController {
     @GetMapping("/join")
     public void join(Model model) {
 
+
     }
 
     @GetMapping("/index")
