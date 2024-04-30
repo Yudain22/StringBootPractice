@@ -41,7 +41,7 @@ public class NoticeServiceImpl implements NoticeService {
     public NoticeDTO readOne(Long no) {
         Optional<Notice> result = noticeRepository.findById(no);
         Notice notice = result.orElseThrow();
-        NoticeDTO noticeDTO = modelMapper.map(notice,NoticeDTO.class);
+        NoticeDTO noticeDTO = modelMapper.map(notice, NoticeDTO.class);
         return noticeDTO;
 
     }
@@ -57,21 +57,20 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public void remove(Long no) {noticeRepository.deleteById(no);
+    public void remove(Long no) {
+        noticeRepository.deleteById(no);
 
     }
 
     @Override
     public PageResponseDTO<NoticeDTO> list(PageRequestDTO pageRequestDTO) {
-        //페이지 및 검색 조건 취득
-        String[] types = pageRequestDTO.getTypes();
         String keyword = pageRequestDTO.getKeyword();
         Pageable pageable = pageRequestDTO.getPageable("no");
-        //레포지토리를 실행하여 데이터 취득
-        Page<Notice> result = noticeRepository.search1(pageable);
-        //VO를 DTO로 변환
+
+        Page<Notice> result = noticeRepository.searchAll(keyword,pageable);
+
         List<NoticeDTO> dtoList = result.getContent().stream()
-                .map(notice -> modelMapper.map(notice,NoticeDTO.class))
+                .map(notice -> modelMapper.map(notice, NoticeDTO.class))
                 .collect(Collectors.toList());
 
         return PageResponseDTO.<NoticeDTO>withAll()
@@ -80,6 +79,5 @@ public class NoticeServiceImpl implements NoticeService {
                 .total((int)result.getTotalElements())
                 .build();
     }
+    }
 
-
-}

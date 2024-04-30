@@ -88,11 +88,12 @@ public class SampleController {
 
     @GetMapping("/notice_list")
     public void notice_list(PageRequestDTO pageRequestDTO, Model model) {
-        model.addAttribute("noticeList",noticeService.list(pageRequestDTO));
+
+        model.addAttribute("responseDTO",noticeService.list(pageRequestDTO));
     }
 
     @GetMapping("/notice_add")
-    public void addGET() {
+    public void addGET(Model model) {
 
     }
 

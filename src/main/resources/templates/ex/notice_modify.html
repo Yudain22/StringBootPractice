@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{layout/layout1.html}">
+<th:block layout:fragment="head">
+	<link th:href="@{/css/style.css}">
+</th:block>
 <head>
 	<title>Notice View</title>
 </head>

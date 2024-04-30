@@ -26,11 +26,11 @@ layout:decorate="~{layout/layout1.html}">
 
             <!-- bodytext_area -->
             <div class="bodytext_area box_inner">
-                <form action="#" class="minisrch_form">
+                <form action="/ex/notice_list" method="get" class="minisrch_form">
                     <fieldset>
                         <legend>검색</legend>
-                        <input type="text" class="tbox" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
-                        <a href="javascript:;" class="btn_srch">검색</a>
+                        <input type="text" class="tbox" name="keyword" th:value="${pageRequestDTO.keyword}" title="검색어를 입력해주세요" placeholder="검색어를 입력해주세요">
+                        <button class="btn_srch" type="submit">검색</button>
                         <a th:href="@{/ex/notice_add}" class="btn_srch">등록</a>
                     </fieldset>
                 </form>
@@ -44,11 +44,11 @@ layout:decorate="~{layout/layout1.html}">
                         <th scope="col">작성일</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr th:each="notice:${noticeList}">
+                    <tbody th:with="link = ${pageRequestDTO.getLink()}">
+                    <tr th:each="notice:${responseDTO.dtoList}">
                         <td th:text="${notice.no}"></td>
                         <td class="tit_notice">
-                            <a th:href="@{/ex/notice_view(no =${notice.no})}">
+                            <a th:href="|@{/ex/notice_view(no =${notice.no})}&${link}|">
                                 [[${notice.title}]]</a> </td>
                         <td>[[${notice.count}]]</td>
                         <td>[[${#temporals.format(notice.regDate,'yyyy-MM-dd')}]]</td>
@@ -85,7 +85,7 @@ layout:decorate="~{layout/layout1.html}">
                         </li>
                     </ul>
                 </div>
-                <!-- //pagination -->
+<!--                 //pagination -->
 
             </div>
             <!-- //bodytext_area -->
