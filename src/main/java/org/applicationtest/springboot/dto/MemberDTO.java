@@ -18,8 +18,8 @@ public class MemberDTO {
     private String member_pw;
     private String name;
     private String phone;
-    private String Email1;
-    private String Email2;
+    private String email1;
+    private String email2;
     private String gender;
     private boolean agree ;
 }

@@ -146,16 +146,6 @@ public class SampleController {
         return "redirect:/ex/notice_list";
     }
 
-    @GetMapping("/login")
-    public void login(Model model) {
-
-    }
-
-    @GetMapping("/join")
-    public void join(Model model) {
-
-
-    }
 
     @GetMapping("/index")
     public void index(Model model) {

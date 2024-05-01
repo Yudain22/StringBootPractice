@@ -18,12 +18,15 @@ public class MemberController {
     private final MemberService memberService;
     @GetMapping("/join")
     public String join(MemberDTO memberDTO) {
-        return "/ex/join.html";
+        return "/ex/join";
     }
 
     @PostMapping("/join")
     public String addJoin(MemberDTO memberDTO) {
+        memberDTO.setEmail1(memberDTO.getMember_id());
         memberService.register(memberDTO);
-        return "redirect:/member/join";
+        return "redirect:/ex/index";
     }
+
+
 }

@@ -23,9 +23,9 @@ public class Member extends BaseEntity {
     @Column(length = 20, nullable = false)
     private String phone;
     @Column(length = 50, nullable = false)
-    private String Email1;
+    private String email1;
     @Column(length = 50, nullable = false)
-    private String Email2;
+    private String email2;
     @Column(length = 5)
     private String gender;
     private boolean agree ;
