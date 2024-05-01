@@ -21,12 +21,12 @@
     <!-- bodytext_area -->
     <div class="bodytext_area place_area box_inner">
         <ul class="program_list clear">
-            <li>
-                <img class="img_place" src="/img/img_place_01.jpg" alt="이응노 미술관" />
-                <h3>이응노 미술관</h3>
-                <p class="subttl">2019.01 ~ 2019.03</p>
+            <li th:each="program:${programList}">
+                <img class="img_place" th:src="@{'/img/'+${program.img}}" th:alt="${program.title}" />
+                <h3>[[${program.title}]]</h3>
+                <p class="subttl">[[${program.schedule}]]</p>
                 <div class="program_content">
-                    <p>고암 이응노 화백의 예술세계와 작품들을 감상할 수 있다. <span class="subtxt">대전에 위치한 이응노 미술관에서는 대전과 파리, 한국과 프랑스, 아시아와 유럽의 커뮤니케이션이 일어난다.</span></p>
+                    <p>[[${program.text}]] <span class="subtxt">[[${program.subrtext}]]</span></p>
                 </div>
                 <p class="btn_more"><a href="javascript:;">더보기</a></p>
             </li>

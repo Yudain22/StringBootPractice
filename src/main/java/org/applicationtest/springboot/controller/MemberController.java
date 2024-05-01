@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -43,11 +44,17 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String postLogin(HttpServletRequest req, String member_id, String member_pw) {
-        MemberDTO loginInfo = memberService.login(member_id, member_pw);
-        HttpSession session = req.getSession();
-        session.setAttribute("loginInfo", loginInfo);
-        return "redirect:/ex/index";
+    public String postLogin(Model model, HttpServletRequest req, String member_id, String member_pw, RedirectAttributes redirectAttributes) {
+        try {
+            MemberDTO loginInfo = memberService.login(member_id, member_pw);
+            HttpSession session = req.getSession(true);
+            session.setAttribute("loginInfo", loginInfo);
+            model.addAttribute("info", loginInfo);
+            return "redirect:/ex/index";
+        }catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error","아이디와 비밀번호를 확인해주세요");
+            return "redirect:/member/login";
+        }
     }
 
     @GetMapping("/login")
