@@ -24,7 +24,9 @@ public class MemverServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberDTO readOne(String memberId){
-        return modelMapper.map(memberRepository.findById(memberId),MemberDTO.class);
+    public MemberDTO login(String member_id,String member_pw){
+        Member member = memberRepository.findByIdAndPw(member_id,member_pw);
+        return modelMapper.map(member,MemberDTO.class);
     }
+
 }
