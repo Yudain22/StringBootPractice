@@ -59,10 +59,10 @@ public class MemberController {
     public String logout(HttpServletRequest req, HttpServletResponse resp) {
         //session 을 변수로 설정했기 때문에 중복 사용 가능
         HttpSession session = req.getSession();
-        session.removeAttribute("member_id");
+        session.removeAttribute("loginInfo");
         session.invalidate();
         //session을 만들지 않고  getSEssion의 결과물에 바로 메서드를 실행하는 방식, 중복 사용 불가능
-//        req.getSession().removeAttribute("member_id");
+//        req.getSession().removeAttribute("loginInfo");
 //        req.getSession().invalidate();
         return "redirect:/ex/index";
     }
